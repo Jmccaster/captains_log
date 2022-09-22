@@ -21,6 +21,15 @@ app.use(express.urlencoded({ extended: false }));
 
 // Routes
 
+// Index Route
+app.get("/logs", (req, res) => {
+  Log.find({}, (err, allLogs) => {
+    console.log(err);
+
+    res.render("index", { logs: allLogs });
+  });
+});
+
 // New Route
 app.get("/logs/new", (req, res) => {
   res.render("New");
@@ -33,14 +42,10 @@ app.post("/logs", (req, res) => {
   } else {
     req.body.shipIsBroken = false;
   }
-  Log.create(
-    req.body,
-    (err,
-    (createLog) => {
-      console.log(err);
-      console.log("Created", createLog);
-    })
-  );
+  Log.create(req.body, (err, createdLog) => {
+    console.log(err);
+    // console.log("Created", createdLog);
+  });
   res.redirect("/logs");
 });
 
