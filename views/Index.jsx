@@ -12,7 +12,11 @@ class Index extends React.Component {
         </nav>
         <ul>
           {logs.map((log, i) => {
-            return <li key={i}>{log.title}</li>;
+            return (
+              <li key={i}>
+                <a href={`/logs/${log.id}`}>{log.title}</a>
+              </li>
+            );
           })}
         </ul>
       </div>

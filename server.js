@@ -49,6 +49,15 @@ app.post("/logs", (req, res) => {
   res.redirect("/logs");
 });
 
+// Show Route
+app.get("/logs/:id", (req, res) => {
+  Log.findById(req.params.id, (err, foundLog) => {
+    console.log(err);
+    console.log("Found", foundLog);
+    res.render("Show", { log: foundLog });
+  });
+});
+
 app.listen(3000, (req, res) => {
   console.log("listening on port 3000");
 });
