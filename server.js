@@ -1,6 +1,16 @@
 const express = require("express");
 const app = express();
 
+const mongoose = require("mongoose");
+const Log = require("./models/logs");
+
+require("dotenv").config();
+
+// Connecting to MongoDB
+mongoose.connect(process.env.MONGO_URI).then(() => {
+  console.log("connected to mongodb");
+});
+
 app.set("view engine", "jsx");
 app.engine("jsx", require("express-react-views").createEngine());
 
@@ -12,7 +22,7 @@ app.use(express.urlencoded({ extended: false }));
 // Routes
 
 // New Route
-app.get("/new", (req, res) => {
+app.get("/logs/new", (req, res) => {
   res.render("New");
 });
 
@@ -23,7 +33,15 @@ app.post("/logs", (req, res) => {
   } else {
     req.body.shipIsBroken = false;
   }
-  res.send(req.body);
+  Log.create(
+    req.body,
+    (err,
+    (createLog) => {
+      console.log(err);
+      console.log("Created", createLog);
+    })
+  );
+  res.redirect("/logs");
 });
 
 app.listen(3000, (req, res) => {
