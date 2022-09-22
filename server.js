@@ -62,6 +62,26 @@ app.delete("/logs/:id", (req, res) => {
   });
 });
 
+// Edit Route
+app.get("/logs/:id/edit", (req, res) => {
+  Log.findById(req.params.id, (err, foundLog) => {
+    console.log(err);
+    res.render("Edit", { log: foundLog });
+  });
+});
+
+// Update/Put Route
+app.put("/logs/:id", (req, res) => {
+  if (req.body.shipIsBroken === "on") {
+    req.body.shipIsBroken = true;
+  } else {
+    req.body.shipIsBroken = false;
+  }
+  Log.findByIdAndUpdate(req.params.id, req.body, (err, updatedLog) => {
+    res.redirect(`/logs/${req.params.id}`);
+  });
+});
+
 // Show Route
 app.get("/logs/:id", (req, res) => {
   Log.findById(req.params.id, (err, foundLog) => {
