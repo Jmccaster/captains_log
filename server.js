@@ -9,6 +9,8 @@ app.engine("jsx", require("express-react-views").createEngine());
 // Body parser
 app.use(express.urlencoded({ extended: false }));
 
+// Routes
+
 // New Route
 app.get("/new", (req, res) => {
   res.render("New");
@@ -16,6 +18,11 @@ app.get("/new", (req, res) => {
 
 // Create Route
 app.post("/logs", (req, res) => {
+  if (req.body.shipIsBroken === "on") {
+    req.body.shipIsBroken = true;
+  } else {
+    req.body.shipIsBroken = false;
+  }
   res.send(req.body);
 });
 
