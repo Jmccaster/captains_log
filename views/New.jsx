@@ -4,13 +4,20 @@ class New extends React.Component {
   render() {
     return (
       <div>
-        <form action="/logs" method="POST ">
-          <input type="text" name="title" />
+        <form action="/logs" method="POST">
+          Title: <input type="text" name="title" />
+          <br />
+          Entry:
           <input type="textarea" name="entry" />
+          <br />
+          Is the ship broken?:
           <input type="checkbox" name="shipIsBroken" />
-          <input type="submit" value="Create Log" />
+          <br />
+          <input type="submit" value="Create Log" /> <br />
         </form>
       </div>
     );
   }
 }
+
+module.exports = New;
