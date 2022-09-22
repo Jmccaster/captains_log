@@ -11,6 +11,9 @@ mongoose.connect(process.env.MONGO_URI).then(() => {
   console.log("connected to mongodb");
 });
 
+// Override for CRUD methods
+const methodOverride = require("method-override");
+
 app.set("view engine", "jsx");
 app.engine("jsx", require("express-react-views").createEngine());
 
@@ -18,6 +21,8 @@ app.engine("jsx", require("express-react-views").createEngine());
 
 // Body parser
 app.use(express.urlencoded({ extended: false }));
+
+app.use(methodOverride("_method"));
 
 // Routes
 
@@ -47,6 +52,14 @@ app.post("/logs", (req, res) => {
     // console.log("Created", createdLog);
   });
   res.redirect("/logs");
+});
+
+// Delete Route
+app.delete("/logs/:id", (req, res) => {
+  Log.findByIdAndRemove(req.params.id, (err, foundLog) => {
+    console.log("Deleted", foundLog);
+    res.redirect("/logs");
+  });
 });
 
 // Show Route
