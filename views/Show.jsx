@@ -12,7 +12,7 @@ class Show extends React.Component {
             : "Our is not broken. We are good!"}
         </h3>
         <br />
-        <a href="/logs">So back to logs</a>
+        <a href="/logs">Go back to logs</a>
       </div>
     );
   }
