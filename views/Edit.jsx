@@ -6,10 +6,16 @@ class Edit extends React.Component {
     return (
       <div>
         <form action={`/logs/${log._id}?_method=PUT`} method="POST">
-          Title: <input defaultValue={log.title} type="text" name="title" />
+          Title:{" "}
+          <input defaultValue={log.title} type="text" name="title" required />
           <br />
           Entry:
-          <input defaultValue={log.entry} type="textarea" name="entry" />
+          <input
+            defaultValue={log.entry}
+            type="textarea"
+            name="entry"
+            required
+          />
           <br />
           Is the ship broken?:
           {log.shipIsBroken ? (

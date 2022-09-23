@@ -14,6 +14,8 @@ mongoose.connect(process.env.MONGO_URI).then(() => {
 // Override for CRUD methods
 const methodOverride = require("method-override");
 
+app.use(express.static("public")); //tells express to try to match requests with files in the directory called 'public'
+
 app.set("view engine", "jsx");
 app.engine("jsx", require("express-react-views").createEngine());
 

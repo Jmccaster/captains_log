@@ -6,6 +6,7 @@ class Index extends React.Component {
     console.log(logs);
     return (
       <div>
+        <link rel="stylesheet" href="/css/app.css" />
         <h1>Captain's Logs List:</h1>
         <nav>
           <a href="/logs/new">Create a New Log</a>

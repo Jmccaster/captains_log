@@ -9,7 +9,7 @@ class Show extends React.Component {
         <h3>
           {this.props.log.shipIsBroken
             ? "Our ship is broken. Uh oh!"
-            : "Our is not broken. We are good!"}
+            : "Our ship is not broken. We are good!"}
         </h3>
         <br />
         <a href="/logs">Go back to logs</a>
