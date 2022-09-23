@@ -31,7 +31,7 @@ app.get("/logs", (req, res) => {
   Log.find({}, (err, allLogs) => {
     console.log(err);
 
-    res.render("index", { logs: allLogs });
+    res.render("Index", { logs: allLogs });
   });
 });
 
